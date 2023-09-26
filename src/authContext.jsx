@@ -4,7 +4,7 @@ import MkdSDK from "./utils/MkdSDK";
 export const AuthContext = React.createContext();
 
 const initialState = {
-  isAuthenticated: false,
+  isAuthenticated: localStorage.getItem("isAuthenticated"),
   user: null,
   token: null,
   role: null,
@@ -17,7 +17,7 @@ const reducer = (state, action) => {
         const { email, password, role } = action.payload;
         const sdk = new MkdSDK();
         sdk.login(email, password, role);
-        localStorage.setItem("role", role);
+        localStorage.setItem("isAuthenticated", true);
         return {
           ...state,
           isAuthenticated: true,

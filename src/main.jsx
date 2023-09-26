@@ -15,9 +15,9 @@ function renderRoutes(role) {
             path="/admin/dashboard"
             element={<AdminDashboardPage />}
           ></Route>
+          <Route index element={<Navigate to="/admin/dashboard" />} />
         </Routes>
       );
-      break;
     default:
       return (
         <Routes>
@@ -25,21 +25,19 @@ function renderRoutes(role) {
           <Route path="*" exact element={<NotFoundPage />}></Route>
         </Routes>
       );
-      break;
   }
 }
 
 function Main() {
-  const { state } = React.useContext(AuthContext);
+  const isAuthenticated = localStorage.getItem("isAuthenticated");
+  console.log({ isAuthenticated });
 
   return (
     <div className="h-full">
       <div className="flex w-full">
         <div className="w-full">
           <div className="page-wrapper w-full py-10 px-5">
-            {!state.isAuthenticated
-              ? renderRoutes("none")
-              : renderRoutes(state.role)}
+            {!isAuthenticated ? renderRoutes("") : renderRoutes("admin")}
           </div>
         </div>
       </div>

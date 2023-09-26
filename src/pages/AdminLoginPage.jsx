@@ -31,7 +31,10 @@ const AdminLoginPage = () => {
     let sdk = new MkdSDK();
     try {
       await sdk.login(data.email, data.password, "admin"); // I manually Add Admin because ther is no option to add role in form
-      authDispatch({ type: "LOGIN" });
+      authDispatch({
+        type: "LOGIN",
+        payload: { email: data.email, role: "admin" },
+      });
       showToast(globalDispatch, "Login Successfully");
       navigate("/admin/dashboard");
     } catch {
