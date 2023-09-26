@@ -34,6 +34,7 @@ export default function MkdSDK() {
 
     const user = await res.json();
     localStorage.setItem("token", user.token);
+    localStorage.setItem("expireTime", user.expire_at);
   };
 
   this.getHeader = function () {

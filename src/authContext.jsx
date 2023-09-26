@@ -52,11 +52,38 @@ export const tokenExpireError = (dispatch, errorMessage) => {
   }
 };
 
+const validateToken = (expireTime) => {
+  const tokenExpirationTime = expireTime * 1000; // Convert seconds to milliseconds
+  const currentTime = Date.now();
+
+  return currentTime < tokenExpirationTime;
+};
+
 const AuthProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   React.useEffect(() => {
-    //TODO
+    const token = localStorage.getItem("token");
+    const role = localStorage.getItem("role");
+
+    if (token && role) {
+      const isValidToken = validateToken(token);
+
+      if (isValidToken) {
+        dispatch({
+          type: "LOGIN",
+          payload: {
+            email: "",
+            password: "",
+            role,
+          },
+        });
+      } else {
+        dispatch({
+          type: "LOGOUT",
+        });
+      }
+    }
   }, []);
 
   return (
