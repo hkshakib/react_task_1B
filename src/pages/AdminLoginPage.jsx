@@ -5,6 +5,7 @@ import * as yup from "yup";
 import MkdSDK from "../utils/MkdSDK";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../authContext";
+import { GlobalContext, showToast } from "../globalContext";
 
 const AdminLoginPage = () => {
   const schema = yup
@@ -14,7 +15,8 @@ const AdminLoginPage = () => {
     })
     .required();
 
-  const { dispatch } = React.useContext(AuthContext);
+  const { dispatch: authDispatch } = React.useContext(AuthContext);
+  const { dispatch: globalDispatch } = React.useContext(GlobalContext);
   const navigate = useNavigate();
   const {
     register,
@@ -29,13 +31,15 @@ const AdminLoginPage = () => {
     let sdk = new MkdSDK();
     try {
       await sdk.login(data.email, data.password, "admin"); // I manually Add Admin because ther is no option to add role in form
-      dispatch({ type: "LOGIN" });
+      authDispatch({ type: "LOGIN" });
+      showToast(globalDispatch, "Login Successfully");
       navigate("/dashboard");
     } catch {
       setError("email", {
         type: "manual",
         message: "Error Occured While Login",
       });
+      showToast(globalDispatch, "Error Occured While Login");
     }
   };
 
