@@ -27,7 +27,16 @@ const AdminLoginPage = () => {
 
   const onSubmit = async (data) => {
     let sdk = new MkdSDK();
-    //TODO
+    try {
+      await sdk.login(data.email, data.password, "admin"); // I manually Add Admin because ther is no option to add role in form
+      dispatch({ type: "LOGIN" });
+      navigate("/dashboard");
+    } catch {
+      setError("email", {
+        type: "manual",
+        message: "Error Occured While Login",
+      });
+    }
   };
 
   return (

@@ -13,10 +13,21 @@ const initialState = {
 const reducer = (state, action) => {
   switch (action.type) {
     case "LOGIN":
-      //TODO
-      return {
-        ...state,
-      };
+      try {
+        const { email, password, role } = action.payload;
+        const sdk = new MkdSDK();
+        sdk.login(email, password, role);
+        localStorage.setItem("role", role);
+        return {
+          ...state,
+          isAuthenticated: true,
+          role,
+          token: localStorage.getItem("token"),
+        };
+      } catch (error) {
+        console.error("Error logging in:", error);
+        return state;
+      }
     case "LOGOUT":
       localStorage.clear();
       return {
