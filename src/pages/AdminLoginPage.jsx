@@ -33,7 +33,7 @@ const AdminLoginPage = () => {
       await sdk.login(data.email, data.password, "admin"); // I manually Add Admin because ther is no option to add role in form
       authDispatch({ type: "LOGIN" });
       showToast(globalDispatch, "Login Successfully");
-      navigate("/dashboard");
+      navigate("/admin/dashboard");
     } catch {
       setError("email", {
         type: "manual",
