@@ -188,7 +188,9 @@ const DashBoard = () => {
         <button
           onClick={handlePrevPage}
           disabled={currentPage === 1}
-          className="flex mr-8 items-center gap-2"
+          className={`flex mr-8 items-center gap-2 text-[16px] text-black h-[40px] w-[128px] font-thin leading-5 justify-center rounded-[30px] cursor-pointer ${
+            currentPage === 1 ? "bg-[#cccccc]" : "bg-[#9BFF00]"
+          }`}
         >
           <FcPrevious />
           Prev
@@ -196,7 +198,9 @@ const DashBoard = () => {
         <button
           onClick={handleNextPage}
           disabled={currentPage === numPages}
-          className="flex mr-8 items-center gap-2"
+          className={`flex mr-8 items-center gap-2 text-[16px] text-black h-[40px] w-[128px] font-thin leading-5 justify-center rounded-[30px] cursor-pointer ${
+            currentPage === numPages ? "bg-[#0e0d0d]" : "bg-[#9BFF00]"
+          }`}
         >
           Next <FcNext />
         </button>
