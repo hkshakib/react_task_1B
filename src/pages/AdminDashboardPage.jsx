@@ -1,5 +1,6 @@
 import React from "react";
 import NavBar from "../components/NavBar";
+import DashBoard from "../components/DashBoard";
 
 const AdminDashboardPage = () => {
   return (
@@ -9,10 +10,7 @@ const AdminDashboardPage = () => {
           <NavBar />
         </nav>
         <div className="flex basis-[90%]">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit
-          possimus adipisci optio dicta culpa pariatur voluptates architecto qui
-          fuga nemo error id eligendi facere quisquam dolorem ea, in ipsam
-          minus?
+          <DashBoard />
         </div>
       </div>
     </>
