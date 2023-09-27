@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { FcPrevious, FcNext } from "react-icons/fc";
 
 const DashBoard = () => {
   const [videos, setVideos] = useState([]);
@@ -54,7 +55,7 @@ const DashBoard = () => {
   };
 
   return (
-    <div className="flex basis-[100%] flex-col mt-20">
+    <div className="h-full flex basis-[100%] flex-col mt-20 bg-black">
       <div className="flex justify-between ml-10 mr-10 text-white">
         <span className="text-[40px] font-thin leading-[48px]">
           Today's Leaderboard
@@ -126,7 +127,7 @@ const DashBoard = () => {
           {videos.map((video, index) => (
             <div
               key={video.id}
-              className="flex justify-between border border-[#FFFFFF1F] items-center pl-4 mb-4 h-24 rounded-[16px]"
+              className="flex justify-between border border-[#FFFFFF1F] items-center pl-4 mb-4 h-24 rounded-[16px] cursor-pointer"
             >
               <td className="flex mr-8">
                 {index < 9 ? `0${index + 1}` : index + 1}
@@ -183,16 +184,21 @@ const DashBoard = () => {
           ))}
         </tbody>
       </div>
-      <div className="flex m-4 text-[#666666]">
+      <div className="flex m-8 text-[#666666] justify-center items-center">
         <button
           onClick={handlePrevPage}
           disabled={currentPage === 1}
-          className="flex mr-8"
+          className="flex mr-8 items-center gap-2"
         >
-          Previous
+          <FcPrevious />
+          Prev
         </button>
-        <button onClick={handleNextPage} disabled={currentPage === numPages}>
-          Next
+        <button
+          onClick={handleNextPage}
+          disabled={currentPage === numPages}
+          className="flex mr-8 items-center gap-2"
+        >
+          Next <FcNext />
         </button>
       </div>
     </div>
