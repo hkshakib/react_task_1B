@@ -8,6 +8,7 @@ const NavBar = () => {
   const handleLogout = () => {
     dispatch({ type: "LOGOUT" });
     navigate("/admin/login");
+    window.location.reload();
   };
   return (
     <div className="flex basis-[100%] justify-between items-center ml-10 mr-10 top-[1px] left-[112px] text-white">

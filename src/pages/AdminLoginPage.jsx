@@ -37,6 +37,7 @@ const AdminLoginPage = () => {
       });
       showToast(globalDispatch, "Login Successfully");
       navigate("/admin/dashboard");
+      window.location.reload();
     } catch {
       setError("email", {
         type: "manual",
