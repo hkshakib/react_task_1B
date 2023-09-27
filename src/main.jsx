@@ -33,7 +33,7 @@ function Main() {
   console.log({ isAuthenticated });
 
   return (
-    <div className="h-full bg-black">
+    <div className=" bg-black">
       <div className="flex w-full">
         <div className="w-full">
           <div className="page-wrapper w-full py-10 px-5">
